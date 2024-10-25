@@ -5,6 +5,7 @@ interface IUser extends Document {
   username: string;
   name: string;
   passwordHash: string;
+  favorites: mongoose.Types.ObjectId[];
 }
 
 const schema = new mongoose.Schema<IUser>(
@@ -25,6 +26,12 @@ const schema = new mongoose.Schema<IUser>(
       required: true,
       minLength: 3,
     },
+    favorites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Favorite',
+      },
+    ],
   },
   {
     timestamps: true,

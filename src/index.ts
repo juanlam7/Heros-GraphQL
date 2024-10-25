@@ -45,8 +45,7 @@ const startServer = async () => {
           const token = auth.substring(7);
           try {
             const { id } = jwt.verify(token, JWT_SECRET) as JwtPayloadInterface;
-            // const currentUser = await User.findById(id).populate('favorites');
-            const currentUser = await User.findById(id);
+            const currentUser = await User.findById(id).populate('favorites');
             return { currentUser };
           } catch (err) {
             console.error('JWT verification error:', err);
