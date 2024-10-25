@@ -5,6 +5,11 @@ export const typeDef = `#graphql
     id: ID!
     favorites: [Favorites]!
   }
+    
+  type AuthPayload {
+    value: String!
+    refreshToken: String!
+  }
 
   type Token {
     value: String!

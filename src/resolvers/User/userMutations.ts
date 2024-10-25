@@ -52,11 +52,14 @@ export const userMutations = {
       username: user.username,
       id: user._id,
     };
+    const accessToken = jwt.sign(userForToken, JWT_SECRET, { expiresIn: '2d' });
+    const refreshToken = jwt.sign(userForToken, JWT_SECRET, {
+      expiresIn: '7d',
+    });
 
     return {
-      value: jwt.sign(userForToken, JWT_SECRET, {
-        expiresIn: 60 * 60 * 24 * 7,
-      }),
+      value: accessToken,
+      refreshToken: refreshToken,
     };
   },
   refreshToken: async (_: ResolverParent, args: { refreshToken: string }) => {
@@ -88,10 +91,16 @@ export const userMutations = {
       id: user._id,
     };
 
+    const newAccessToken = jwt.sign(userForToken, JWT_SECRET, {
+      expiresIn: '15m',
+    });
+    const refreshToken = jwt.sign(userForToken, JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
     return {
-      value: jwt.sign(userForToken, JWT_SECRET, {
-        expiresIn: 60 * 60 * 24 * 7, // Token valid for 7 days
-      }),
+      value: newAccessToken,
+      refreshToken: refreshToken,
     };
   },
 };
