@@ -18,6 +18,7 @@ export const typeDef = `#graphql
   type Favorites {
     heroId: Float!
     name: String!
+    image: String!
     createdAt: String
     updatedAt: String
     users: [User]!

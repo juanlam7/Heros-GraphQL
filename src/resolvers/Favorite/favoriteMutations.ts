@@ -24,7 +24,7 @@ export const favoriteMutations = {
     const favorite = new Favorite({ ...args });
 
     try {
-      favorite.users.concat(currentUser);
+      favorite.users.push(currentUser);
       await favorite.save();
 
       currentUser.favorites = currentUser.favorites.concat(favorite);

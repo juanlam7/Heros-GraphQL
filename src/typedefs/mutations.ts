@@ -4,7 +4,7 @@ export const mutationsDef = `#graphql
     login(username: String!, password: String!): AuthPayload!
     refreshToken(refreshToken: String!): AuthPayload!
     
-    addFavorite(heroId: Float!, name: String!): Favorites
+    addFavorite(heroId: Float!, name: String!, image: String!): Favorites
     deleteFavorite(heroId: Float!): String
   }
 `;
